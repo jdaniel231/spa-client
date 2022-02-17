@@ -1,5 +1,13 @@
 <template lang="pug">
-  #dashboardSidebar Sidebar
+  #dashboardSidebar
+    aside.menu
+      p.menu-label Categorias
+      ul.menu-list
+        li
+          router-link(:to="{name: 'home_path'}")
+            span.icon
+              font-awesome-icon(icon='home')
+            span Inicio
 </template>
 
 <script>
