@@ -1,7 +1,13 @@
 <template lang="pug">
   #DashboardIndex 
     Navbar
-    Sidebar
+    section.section
+      .columns
+        .column.is-2
+          Sidebar
+        .column.is-10
+          .content
+            router-view
 
 </template>
 
