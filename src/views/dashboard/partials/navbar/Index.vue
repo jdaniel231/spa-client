@@ -8,11 +8,18 @@
         .navbar-end
           .navbar-item
             .buttons
-              a.button.is-danger Encerrar sessão
+              a.button.is-danger(@click.prevent="logout") Logout
 </template>
 
 <script>
 export default {
   name: 'dashboardNavbar',
+
+  methods: {
+    logout() {
+      this.$store.dispatch("doLogout")
+      this.$router.push({ name: 'login_path' })
+    }
+  }
 }
 </script>
