@@ -41,15 +41,32 @@ export default new Vuex.Store({
   },
   actions: {
     fetchCategories({commit, state}) {
+      commit('setHeaders')
       axios.get("/categories", { headers: state.headers})
         .then(response => commit('setCategories', response.data))
         .catch(err => console.log(err.response))
     },
 
     getCategory({commit, state}, id) {
+      commit('setHeaders')
       axios.get(`/categories/${id}`, { headers: state.headers})
-      .then(response =>{ commit('setCategory', response.data)})
-      .catch(err => console.log(err.response))
+        .then(response =>{ commit('setCategory', response.data)})
+        .catch(err => console.log(err.response))
+    },
+
+    postCategory({commit, state}, category) {
+      commit('setHeaders')
+      return new Promise((resolve, reject) => {
+        axios.post("/categories", category, { headers: state.headers })
+          .then(response => {
+            commit('setCategory', response.data)
+            resolve(response)
+          })
+          .catch(err => {
+            reject(err)
+            console.log(err)
+          })
+      })
     },
 
     doLogin({ commit, state }, user) {
